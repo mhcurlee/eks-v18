@@ -1,5 +1,5 @@
 variable "project_name" {
-  default = "mhcurlee-eks"
+  
   type    = string
 
 }
