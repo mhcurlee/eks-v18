@@ -10,7 +10,7 @@ data "aws_eks_cluster_auth" "cluster" {
 
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
-  version = "18.15.0"
+  version = "18.20.2"
 
   cluster_name              = var.project_name
   cluster_version           = var.cluster_version
@@ -26,6 +26,22 @@ module "eks" {
       resources        = ["secrets"]
     }
   ]
+
+  manage_aws_auth_configmap = true
+
+  aws_auth_roles = [
+    {
+      rolearn  = aws_iam_role.k8s-admin-role.arn
+      username = "admin-user"
+      groups   = ["system:masters"]
+    },
+    {
+      rolearn  = aws_iam_role.k8s-dev-role.arn
+      username = "dev-user"
+      groups   = [""]
+    }
+  ]
+
 
   # EKS Managed Node Group(s)
   eks_managed_node_group_defaults = {
