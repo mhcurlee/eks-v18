@@ -1,6 +1,6 @@
 variable "project_name" {
-  
-  type    = string
+
+  type = string
 
 }
 
@@ -17,7 +17,7 @@ variable "cluster_write_kubeconfig" {
 
 variable "cluster_version" {
   type    = string
-  default = "1.21"
+  default = "1.22"
 
 }
 
