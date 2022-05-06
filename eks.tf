@@ -58,6 +58,7 @@ module "eks" {
       min_size     = 2
       max_size     = 10
       desired_size = 2
+      ami_type = "BOTTLEROCKET_x86_64"
 
       instance_types = ["t3.small"]
 
